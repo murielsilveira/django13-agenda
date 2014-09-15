@@ -1,0 +1,14 @@
+<div class="form-group {% if campo.errors %}has-error{% endif %}">
+    <label for="{{ campo.auto_id }}" class="col-sm-2 control-label">
+    	{{ campo.label }} 
+    	{% if obrigatorio %}
+    		<span style="padding-right:1px;" title="Campo obrigatório">*</span>
+    	{% endif %}
+    </label>
+    <div class="col-sm-5">
+        {{ campo }}
+        {% if campo.help_text %}
+        <p class="help_block">{{ campo.help_text }}</p>
+        {% endif %}
+    </div>
+</div>

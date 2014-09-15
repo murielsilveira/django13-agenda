@@ -1,0 +1,43 @@
+{% include "sistema/header.html" %}
+
+<div class="container">
+
+{% include "sistema/menu_topo.html" %}
+
+<h1>Contatos :: Listar</h1>
+<hr>
+
+<a href="{% url contatos.views.contatos_cadastrar %}" class="btn btn-primary">
+    <span class="glyphicon glyphicon-plus"></span>&nbsp;
+    Cadastrar Contato
+</a>
+
+<table width="100%" class="table">
+    <thead>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>CPF</th>
+        <th>Data de Nascimento</th>
+        <th>Ativo</th>
+        <th>Ações</th>
+    </thead>
+    <tbody>
+        {% for contato in contatos %}
+            <tr>
+                <td>{{ contato.id }}</td>
+                <td>{{ contato.nome }}</td>
+                <td>{{ contato.email }}</td>
+                <td>{{ contato.cpf }}</td>
+                <td>{{ contato.data_nascimento }}</td>
+                <td>{{ contato.ativo }}</td>
+                <td>
+                    <a href="{% url contatos.views.contatos_editar contato.id %}">Alterar</a> |
+                    <a href="{% url contatos.views.contatos_excluir contato.id %}">Excluir</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include "sistema/footer.html" %}

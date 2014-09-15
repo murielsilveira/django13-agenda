@@ -1,0 +1,75 @@
+{% include "sistema/header.html" %}
+
+<style>
+ul.errorlist {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+ul.errorlist li {
+    color: #a94442;
+    font-size: 12px;
+    list-style: none;
+}
+</style>
+
+<div class="container">
+
+{% include "sistema/menu_topo.html" %}
+
+<h2>Contatos :: Cadastrar</h2>
+<hr>
+
+<form action="." method="post" class="form-horizontal" role="form">
+
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <span class="glyphicon glyphicon-fire"></span>
+        <strong>Erro!</strong> Foram encontrados alguns erros no preenchimento dos dados. Por favor, verifique.
+    </div>
+    {% endif %}
+
+    {% include "form/input_text.html" with campo=form.nome obrigatorio='True' %}
+
+    {% include "form/input_text.html" with campo=form.email obrigatorio='True' %}
+
+    {% include "form/input_text.html" with campo=form.senha obrigatorio='True' %}
+
+    {% include "form/input_text.html" with campo=form.telefone obrigatorio='True' placeholder='nome@provedor.com.br' %}
+
+    {% include "form/input_text.html" with campo=form.cpf obrigatorio='True' %}
+
+    {% include "form/input_text.html" with campo=form.data_nascimento obrigatorio='True' %}
+
+    <div class="form-group">
+        <label for="ativo" class="col-md-2 control-label">Ativo</label>
+        <div class="col-md-4">
+            <label class="radio-inline">
+                <input type="radio" name="ativo" value="True" checked=""> Sim
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="ativo" value="False"> Não
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-5 col-sm-offset-2">
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-ok"></span>&nbsp;
+                Salvar
+            </button>
+            <a href="{% url contatos.views.contatos_listar %}" class="btn btn-default">
+                <span class="glyphicon glyphicon-remove"></span>&nbsp;
+                Cancelar
+            </a>
+        </div>
+    </div>
+</form>
+
+{% include "sistema/footer.html" %}
